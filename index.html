@@ -8,7 +8,7 @@
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
   * { margin:0; padding:0; box-sizing:border-box; }
   body { background:#0d0d1a; color:#e0e0e0; font-family:'Segoe UI',Arial,sans-serif; padding:30px 20px; }
-  .container { max-width:1000px; margin:0 auto; }
+  .container { max-width:1100px; margin:0 auto; }
   .header { text-align:center; padding:30px 20px; background:linear-gradient(135deg,#1a1a2e,#16213e); border-radius:16px; border:1px solid #FFD70044; margin-bottom:25px; }
   .header h1 { font-family:'Noto Sans JP',serif; font-size:26px; color:#FFD700; letter-spacing:2px; }
   .header .sub { color:#aaa; margin-top:6px; font-size:13px; }
@@ -20,15 +20,24 @@
   .stat-card.red .num { color:#E74C3C; } .stat-card.orange .num { color:#F39C12; }
   .section { background:#1a1a2e; border-radius:12px; padding:20px; margin-bottom:20px; border:1px solid #222; }
   .section h2 { font-family:'Noto Sans JP',serif; font-size:18px; color:#FFD700; margin-bottom:12px; padding-bottom:8px; border-bottom:2px solid #FFD70033; }
-  table { width:100%; border-collapse:collapse; font-size:13px; }
-  thead th { background:#0f3460; color:#FFD700; padding:8px; text-align:left; border-bottom:2px solid #FFD70044; }
-  tbody td { padding:6px 8px; border-bottom:1px solid #222; }
+  table { width:100%; border-collapse:collapse; font-size:12px; }
+  thead th { background:#0f3460; color:#FFD700; padding:7px 6px; text-align:left; border-bottom:2px solid #FFD70044; }
+  tbody td { padding:5px 6px; border-bottom:1px solid #222; }
   .num { text-align:right; font-weight:bold; }
-  .high-discount { background:#3d1515; }
-  .no-discount { background:#0a2e0a; }
-  .fix-box { background:#0a2e0a; border:1px solid #2ECC7144; border-radius:10px; padding:12px; margin:10px 0; font-size:12px; }
-  .bar { display:inline-block; height:20px; background:#E74C3C; border-radius:3px; vertical-align:middle; }
-  .bar.y { background:#F39C12; } .bar.g { background:#2ECC71; }
+  .scenarios { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  .scenario { border-radius:10px; padding:15px; text-align:center; }
+  .scenario h3 { font-size:14px; margin-bottom:5px; }
+  .scenario .big { font-size:22px; font-weight:bold; }
+  .scenario.red { background:linear-gradient(135deg,#2c1010,#3d1515); border:2px solid #E74C3C44; }
+  .scenario.yellow { background:linear-gradient(135deg,#2c2510,#3d3015); border:2px solid #F39C1244; }
+  .scenario.green { background:linear-gradient(135deg,#102c14,#153d1a); border:2px solid #2ECC7144; }
+  .scenario.red .big { color:#E74C3C; } .scenario.yellow .big { color:#F39C12; } .scenario.green .big { color:#2ECC71; }
+  .bar-chart { margin:10px 0; }
+  .bar-row { display:flex; align-items:center; gap:6px; margin-bottom:4px; }
+  .bar-lbl { width:80px; text-align:right; font-size:11px; color:#999; flex-shrink:0; }
+  .bar-trk { flex:1; height:18px; background:#222; border-radius:3px; overflow:hidden; }
+  .bar-fl { height:100%; border-radius:3px; display:flex; align-items:center; justify-content:flex-end; padding-right:5px; font-size:10px; font-weight:bold; color:#fff; min-width:25px; }
+  .bar-v { width:80px; font-size:11px; font-weight:bold; }
   .footer { text-align:center; padding:15px; color:#555; font-size:11px; }
 </style>
 </head>
@@ -36,93 +45,94 @@
 <div class="container">
   <div class="header">
     <h1>🔴 BÁO CÁO CHI TIẾT NGÀY 11/7/2026</h1>
-    <div class="sub">Thứ 7 — Nhà hàng Asukaza — Ngày lỗ duy nhất trong tháng 7</div>
+    <div class="sub">Thứ 7 · 17 hóa đơn · 53 khách · 31,390,000đ · <strong style="color:#F39C12">Gần hòa vốn +0.8%</strong></div>
   </div>
 
   <div class="stats">
     <div class="stat-card gold"><div class="num">17</div><div class="label">🧾 Hóa đơn</div></div>
-    <div class="stat-card gold"><div class="num">53</div><div class="label">👥 Khách (đông nhất)</div></div>
-    <div class="stat-card red"><div class="num">-949K</div><div class="label">🔴 Lỗ</div></div>
-    <div class="stat-card orange"><div class="num">32%</div><div class="label">🏷️ Giảm giá/D.thu</div></div>
+    <div class="stat-card gold"><div class="num">53</div><div class="label">👥 Khách</div></div>
+    <div class="stat-card orange"><div class="num">31.4M</div><div class="label">💰 Doanh thu</div></div>
+    <div class="stat-card orange"><div class="num">31.1M</div><div class="label">📦 Giá vốn</div></div>
   </div>
 
+  <!-- TABLE WITH COST -->
   <div class="section">
-    <h2>📋 17 hóa đơn — 12 HĐ có giảm giá!</h2>
+    <h2>📋 17 hóa đơn — chi tiết doanh thu + giá vốn</h2>
     <table>
-      <thead><tr><th>HĐ</th><th>Bàn</th><th>Khách</th><th style="text-align:right">Doanh thu</th><th style="text-align:right">Giảm giá</th><th style="text-align:right">Giảm/Khách</th><th style="width:120px">Lý do giảm</th></tr></thead>
+      <thead><tr><th>HĐ</th><th>Bàn</th><th>Kh</th><th style="text-align:right">Doanh thu</th><th style="text-align:right">📦 Giá vốn</th><th style="text-align:right">📈 Lãi/Lỗ</th><th style="text-align:center">TLệ</th><th style="text-align:right">🏷️ Giảm</th><th>Ghi chú</th></tr></thead>
       <tbody>
-        <tr class="high-discount"><td>110004</td><td><strong>B18(T1)</strong></td><td>6</td><td class="num">3,850,500</td><td class="num" style="color:#E74C3C;font-weight:bold">-1,462,500</td><td class="num" style="color:#E74C3C">-244K</td><td>Giảm 30% Buffet Trưa</td></tr>
-        <tr class="high-discount"><td>110016</td><td><strong>B27(T2)</strong></td><td>4</td><td class="num">2,808,000</td><td class="num" style="color:#E74C3C;font-weight:bold">-1,290,000</td><td class="num" style="color:#E74C3C">-323K</td><td>Google Review tặng nước</td></tr>
-        <tr class="high-discount"><td>110006</td><td>B28(T2)</td><td>5</td><td class="num">2,655,000</td><td class="num" style="color:#E74C3C">-975,000</td><td class="num" style="color:#E74C3C">-195K</td><td>Giảm 30% Buffet Trưa</td></tr>
-        <tr class="high-discount"><td>110008</td><td>B26(T2)</td><td>4</td><td class="num">2,064,600</td><td class="num" style="color:#E74C3C">-870,000</td><td class="num" style="color:#E74C3C">-218K</td><td>Giảm 30% Buffet Trưa</td></tr>
-        <tr class="high-discount"><td>110015</td><td>B28(T2)</td><td>2</td><td class="num">1,701,000</td><td class="num" style="color:#E74C3C">-760,000</td><td class="num" style="color:#E74C3C">-380K</td><td>VIP nâng hạng</td></tr>
-        <tr class="high-discount"><td>110007</td><td>B12(T1)</td><td>4</td><td class="num">1,818,900</td><td class="num" style="color:#E74C3C">-682,500</td><td class="num" style="color:#E74C3C">-171K</td><td>Giảm 30% Buffet Trưa</td></tr>
-        <tr class="high-discount"><td>110001</td><td>B24(T2)</td><td>2</td><td class="num">1,502,400</td><td class="num" style="color:#E74C3C">-600,000</td><td class="num" style="color:#E74C3C">-300K</td><td>Google Review</td></tr>
-        <tr class="high-discount"><td>110003</td><td>B21(T2)</td><td>4</td><td class="num">1,590,000</td><td class="num" style="color:#E74C3C">-600,000</td><td class="num" style="color:#E74C3C">-150K</td><td>VIP nâng hạng</td></tr>
-        <tr class="high-discount"><td>110009</td><td>B21(T2)</td><td>2</td><td class="num">1,470,000</td><td class="num" style="color:#E74C3C">-600,000</td><td class="num" style="color:#E74C3C">-300K</td><td>VIP nâng hạng</td></tr>
-        <tr class="high-discount"><td>110011</td><td>B12(T1)</td><td>2</td><td class="num">1,903,200</td><td class="num" style="color:#E74C3C">-600,000</td><td class="num" style="color:#E74C3C">-300K</td><td>VIP nâng hạng</td></tr>
-        <tr class="high-discount"><td>110012</td><td>B26(T2)</td><td>2</td><td class="num">1,075,200</td><td class="num" style="color:#E74C3C">-465,000</td><td class="num" style="color:#E74C3C">-233K</td><td>VIP nâng hạng</td></tr>
-        <tr class="high-discount"><td>110010</td><td>B16(T1)</td><td>2</td><td class="num">1,229,200</td><td class="num" style="color:#E74C3C">-400,000</td><td class="num" style="color:#E74C3C">-200K</td><td>VIP nâng hạng</td></tr>
-        <tr class="high-discount"><td>110002</td><td>B16(T1)</td><td>2</td><td class="num">1,104,000</td><td class="num" style="color:#E74C3C">-400,000</td><td class="num" style="color:#E74C3C">-200K</td><td>VIP nâng hạng</td></tr>
-        <tr class="high-discount"><td>110017</td><td>B24(T2)</td><td>3</td><td class="num">1,458,000</td><td class="num" style="color:#E74C3C">-225,000</td><td class="num" style="color:#E74C3C">-75K</td><td>Google Review</td></tr>
-        <tr class="no-discount"><td>110005</td><td>B27(T2)</td><td>2</td><td class="num">1,470,000</td><td class="num">0</td><td class="num">0</td><td>✅</td></tr>
-        <tr class="no-discount"><td>110013</td><td>B29(T2)</td><td>5</td><td class="num">2,253,000</td><td class="num">0</td><td class="num">0</td><td>✅</td></tr>
-        <tr class="no-discount"><td>110014</td><td>B23(T2)</td><td>2</td><td class="num">1,437,000</td><td class="num">0</td><td class="num">0</td><td>✅</td></tr>
+        <tr><td>110001</td><td>B24(T2)</td><td>2</td><td class="num">1,502,400</td><td class="num">901,120</td><td class="num" style="color:#2ECC71">+601,280</td><td class="num" style="color:#2ECC71">40.0%</td><td class="num" style="color:#E74C3C">-600K</td><td>Google Review</td></tr>
+        <tr><td>110002</td><td>B16(T1)</td><td>2</td><td class="num">1,104,000</td><td class="num">908,275</td><td class="num" style="color:#F39C12">+195,725</td><td class="num" style="color:#F39C12">17.7%</td><td class="num" style="color:#E74C3C">-400K</td><td>VIP nâng hạng</td></tr>
+        <tr style="background:#2c1010"><td>110003</td><td><strong>B21(T2)</strong></td><td>4</td><td class="num">1,590,000</td><td class="num" style="color:#E74C3C">2,258,167</td><td class="num" style="color:#E74C3C;font-weight:bold">-668,167</td><td class="num" style="color:#E74C3C">-42.0%</td><td class="num" style="color:#E74C3C">-600K</td><td>VIP nâng hạng</td></tr>
+        <tr><td>110004</td><td><strong>B18+19(T1)</strong></td><td>6</td><td class="num">3,850,500</td><td class="num">3,584,450</td><td class="num" style="color:#F39C12">+266,050</td><td class="num" style="color:#F39C12">6.9%</td><td class="num" style="color:#E74C3C">-1,463K</td><td>Giảm 30% Trưa</td></tr>
+        <tr><td>110005</td><td>B27(T2)</td><td>2</td><td class="num">1,470,000</td><td class="num">1,546,967</td><td class="num" style="color:#E74C3C">-76,967</td><td class="num" style="color:#E74C3C">-5.2%</td><td class="num">0</td><td>✅</td></tr>
+        <tr style="background:#2c1010"><td>110006</td><td><strong>B28(T2) 🔴🔴</strong></td><td>5</td><td class="num">2,655,000</td><td class="num" style="color:#E74C3C">5,232,786</td><td class="num" style="color:#E74C3C;font-weight:bold">-2,577,786</td><td class="num" style="color:#E74C3C">-97.1%</td><td class="num" style="color:#E74C3C">-975K</td><td>Giảm 30% Trưa</td></tr>
+        <tr style="background:#2c1010"><td>110007</td><td><strong>B12(T1)</strong></td><td>4</td><td class="num">1,818,900</td><td class="num" style="color:#E74C3C">2,572,533</td><td class="num" style="color:#E74C3C;font-weight:bold">-753,633</td><td class="num" style="color:#E74C3C">-41.4%</td><td class="num" style="color:#E74C3C">-683K</td><td>Giảm 30% Trưa</td></tr>
+        <tr><td>110008</td><td>B26(T2)</td><td>4</td><td class="num">2,064,600</td><td class="num">1,555,033</td><td class="num" style="color:#2ECC71">+509,567</td><td class="num" style="color:#2ECC71">24.7%</td><td class="num" style="color:#E74C3C">-870K</td><td>Giảm 30% Trưa</td></tr>
+        <tr><td>110009</td><td>B21(T2)</td><td>2</td><td class="num">1,470,000</td><td class="num">1,129,083</td><td class="num" style="color:#2ECC71">+340,917</td><td class="num" style="color:#2ECC71">23.2%</td><td class="num" style="color:#E74C3C">-600K</td><td>VIP nâng hạng</td></tr>
+        <tr><td>110010</td><td>B16(T1)</td><td>2</td><td class="num">1,229,200</td><td class="num">908,275</td><td class="num" style="color:#2ECC71">+320,925</td><td class="num" style="color:#2ECC71">26.1%</td><td class="num" style="color:#E74C3C">-400K</td><td>VIP nâng hạng</td></tr>
+        <tr><td>110011</td><td>B12(T1)</td><td>2</td><td class="num">1,903,200</td><td class="num">1,286,267</td><td class="num" style="color:#2ECC71">+616,933</td><td class="num" style="color:#2ECC71">32.4%</td><td class="num" style="color:#E74C3C">-600K</td><td>VIP nâng hạng</td></tr>
+        <tr><td>110012</td><td>B26(T2)</td><td>2</td><td class="num">1,075,200</td><td class="num">777,517</td><td class="num" style="color:#2ECC71">+297,683</td><td class="num" style="color:#2ECC71">27.7%</td><td class="num" style="color:#E74C3C">-465K</td><td>VIP nâng hạng</td></tr>
+        <tr style="background:#0a2e0a"><td>110013</td><td><strong>B29(T2) 🏆</strong></td><td>5</td><td class="num">2,253,000</td><td class="num">1,036,150</td><td class="num" style="color:#2ECC71;font-weight:bold">+1,216,850</td><td class="num" style="color:#2ECC71;font-weight:bold">54.0%</td><td class="num">0</td><td>✅</td></tr>
+        <tr style="background:#0a2e0a"><td>110014</td><td><strong>B23(T2) 🏆</strong></td><td>2</td><td class="num">1,437,000</td><td class="num">906,550</td><td class="num" style="color:#2ECC71;font-weight:bold">+530,450</td><td class="num" style="color:#2ECC71;font-weight:bold">36.9%</td><td class="num">0</td><td>✅</td></tr>
+        <tr style="background:#2c1010"><td>110015</td><td><strong>B28(T2) 🔴🔴</strong></td><td>2</td><td class="num">1,701,000</td><td class="num" style="color:#E74C3C">2,093,114</td><td class="num" style="color:#E74C3C;font-weight:bold">-392,114</td><td class="num" style="color:#E74C3C">-23.1%</td><td class="num" style="color:#E74C3C">-760K</td><td>VIP nâng hạng</td></tr>
+        <tr style="background:#2c1010"><td>110016</td><td><strong>B27(T2)</strong></td><td>4</td><td class="num">2,808,000</td><td class="num" style="color:#E74C3C">3,093,933</td><td class="num" style="color:#E74C3C;font-weight:bold">-285,933</td><td class="num" style="color:#E74C3C">-10.2%</td><td class="num" style="color:#E74C3C">-1,290K</td><td>Google Review</td></tr>
+        <tr><td>110017</td><td>B24(T2)</td><td>3</td><td class="num">1,458,000</td><td class="num">1,351,680</td><td class="num" style="color:#F39C12">+106,320</td><td class="num" style="color:#F39C12">7.3%</td><td class="num" style="color:#E74C3C">-225K</td><td>Google Review</td></tr>
       </tbody>
       <tfoot>
         <tr style="background:#0f3460;font-weight:bold">
-          <td colspan="2">TỔNG</td><td>53</td>
-          <td class="num" style="color:#FFD700">31,390,000</td>
-          <td class="num" style="color:#E74C3C;font-size:15px">-9,930,000</td>
-          <td class="num" style="color:#E74C3C">-187K/kh</td><td>12/17 HĐ giảm giá</td>
+          <td>TỔNG</td><td></td><td>53</td>
+          <td class="num" style="color:#FFD700;font-size:14px">31,390,000</td>
+          <td class="num" style="color:#E74C3C;font-size:14px">31,141,900</td>
+          <td class="num" style="color:#F39C12;font-size:14px">+248,100</td>
+          <td class="num" style="color:#F39C12;font-size:14px">0.8%</td>
+          <td class="num" style="color:#E74C3C;font-size:14px">-9,930K</td>
+          <td>12/17 HĐ giảm</td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <!-- GIẢM GIÁ THEO LOẠI -->
+  <!-- 3 SCENARIOS -->
   <div class="section">
-    <h2>🏷️ Phân tích giảm giá — 9.93 triệu</h2>
+    <h2>📊 3 kịch bản</h2>
     
-    <div style="margin-bottom:15px;">
-      <div style="font-size:13px;margin-bottom:4px;">🔴 Giảm 30% Buffet Trưa: <strong>3,990,000đ (40%)</strong></div>
-      <div style="height:20px;background:#222;border-radius:4px;overflow:hidden;">
-        <div style="height:100%;width:40%;background:#E74C3C;border-radius:4px;"></div>
-      </div>
-    </div>
-    <div style="margin-bottom:15px;">
-      <div style="font-size:13px;margin-bottom:4px;">🟡 VIP nâng hạng: <strong>3,825,000đ (39%)</strong></div>
-      <div style="height:20px;background:#222;border-radius:4px;overflow:hidden;">
-        <div style="height:100%;width:39%;background:#F39C12;border-radius:4px;"></div>
-      </div>
-    </div>
-    <div>
-      <div style="font-size:13px;margin-bottom:4px;">🟢 Google Review tặng nước: <strong>2,115,000đ (21%)</strong></div>
-      <div style="height:20px;background:#222;border-radius:4px;overflow:hidden;">
-        <div style="height:100%;width:21%;background:#2ECC71;border-radius:4px;"></div>
-      </div>
+    <div class="bar-chart">
+      <div style="font-size:12px;color:#aaa;margin-bottom:6px;">💰 DOANH THU</div>
+      <div class="bar-row"><div class="bar-lbl">🔴 KB1</div><div class="bar-trk"><div class="bar-fl" style="width:70%;background:#E74C3C">31.4M</div></div><div class="bar-v" style="color:#E74C3C">31,390K</div></div>
+      <div class="bar-row"><div class="bar-lbl">🟡 KB2</div><div class="bar-trk"><div class="bar-fl" style="width:93%;background:#F39C12">41.3M</div></div><div class="bar-v" style="color:#F39C12">41,320K</div></div>
+      <div class="bar-row"><div class="bar-lbl">🟢 KB3</div><div class="bar-trk"><div class="bar-fl" style="width:100%;background:#2ECC71">44.5M</div></div><div class="bar-v" style="color:#2ECC71">44,520K</div></div>
+      
+      <div style="font-size:12px;color:#aaa;margin:10px 0 6px;">📈 LÃI GỘP</div>
+      <div class="bar-row"><div class="bar-lbl">🔴 KB1</div><div class="bar-trk"><div class="bar-fl" style="width:2%;background:#E74C3C">+0.2M</div></div><div class="bar-v" style="color:#F39C12">+248K (0.8%)</div></div>
+      <div class="bar-row"><div class="bar-lbl">🟡 KB2</div><div class="bar-trk"><div class="bar-fl" style="width:76%;background:#F39C12">+10.2M</div></div><div class="bar-v" style="color:#F39C12">+10.2M (24.6%)</div></div>
+      <div class="bar-row"><div class="bar-lbl">🟢 KB3</div><div class="bar-trk"><div class="bar-fl" style="width:100%;background:#2ECC71">+13.4M</div></div><div class="bar-v" style="color:#2ECC71">+13.4M (30%)</div></div>
     </div>
 
-    <div class="fix-box" style="margin-top:15px;background:#3d1515;border-color:#E74C3C44;">
-      <strong>🔥 Tác động:</strong> 9.93 triệu giảm giá đã biến 1 ngày lời thành lỗ!
-      <br>📌 <strong>Nếu ko giảm:</strong> D.thu 41.32M - Vốn 32.34M = <strong style="color:#2ECC71">+8.98M (21.7%)</strong>
+    <div class="scenarios">
+      <div class="scenario red">
+        <h3>🔴 KB1: Hiện tại</h3>
+        <div class="big">+248K</div>
+        <div style="font-size:12px;color:#F39C12">0.8%</div>
+        <div style="font-size:10px;color:#888;">31.4M - 31.1M</div>
+      </div>
+      <div class="scenario yellow">
+        <h3>🟡 KB2: +Bỏ giảm giá</h3>
+        <div class="big" style="color:#F39C12">+10.2M</div>
+        <div style="font-size:12px;color:#F39C12">24.6%</div>
+        <div style="font-size:10px;color:#aaa;">+9.93M so KB1</div>
+      </div>
+      <div class="scenario green">
+        <h3>🟢 KB3: +Đúng giá vé</h3>
+        <div class="big" style="color:#2ECC71">+13.4M</div>
+        <div style="font-size:12px;color:#2ECC71">30.0%</div>
+        <div style="font-size:10px;color:#aaa;">+13.13M so KB1</div>
+      </div>
     </div>
-  </div>
-
-  <!-- BÀN LỖ NHẤT -->
-  <div class="section">
-    <h2>🔴 Bàn lỗ nặng nhất: B18(T1) — HĐ 110004</h2>
-    <table>
-      <tr><td>Khách</td><td><strong>6 khách</strong></td></tr>
-      <tr><td>Doanh thu</td><td>3,850,500đ</td></tr>
-      <tr><td>🏷️ Giảm giá</td><td class="num" style="color:#E74C3C">-1,462,500đ (Giảm 30% Buffet Trưa)</td></tr>
-      <tr><td>Giá vốn (ước)</td><td class="num" style="color:#E74C3C">~4,500,000đ</td></tr>
-      <tr style="background:#3d1515;font-weight:bold"><td>Lỗ ước tính</td><td class="num" style="color:#E74C3C;font-size:16px">-2,112,000đ (-55%)</td></tr>
-    </table>
   </div>
 
   <div class="footer">
-    Hermes Agent · 11/7/2026 · Asukaza 🍣
+    Hermes Agent · 11/7/2026 (Thứ 7) · 17 HĐ · 53 khách · Asukaza 🍣
   </div>
 </div>
 </body>
